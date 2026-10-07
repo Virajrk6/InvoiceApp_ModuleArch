@@ -1,0 +1,97 @@
+<div class="invoice-preview-container py-5 bg-light min-vh-100 d-flex justify-content-center">
+  
+    <div class="position-absolute top-0 start-0 p-4 d-print-none">
+        <button pButton label="Back to invoices" icon="fa-solid fa-arrow-left"
+                [routerLink]="['/invoice']"></button>
+    </div>
+  <div class="position-absolute top-0 end-0 p-4 d-print-none">
+    <button pButton icon="fa-solid fa-print" label="Print Invoice" class="p-button-secondary p-button-outlined" (click)="printInvoice()"></button>
+  </div>
+
+  <div class="invoice-document bg-white p-5 shadow-sm border rounded" style="max-width: 850px; width: 100%;">
+    
+    <div class="row border-bottom pb-4 mb-4">
+      <div class="col-sm-6">
+        <h1 class="text-primary fw-bold mb-1 track-tight">INVOICE</h1>
+        <p class="text-muted mb-0 fs-5">#{{ invoice?.invoiceNo }}</p>
+      </div>
+      <div class="col-sm-6 text-end">
+        <h4 class="fw-bold mb-1">ABC Industries</h4>
+        <p class="text-muted mb-0 small">
+          123 Business Center<br>
+          Surat, Gujarat, 395003<br>
+          ABC&#64;buisness.com
+        </p>
+      </div>
+    </div>
+
+
+    <div class="row mb-5">
+
+      <div class="col-sm-6">
+        <h6 class="text-muted fw-bold text-uppercase small mb-2">Bill To:</h6>
+        <h5 class="fw-bold mb-1">{{ customer?.firstName }} {{ customer?.lastName }}</h5>
+        <p class="text-muted mb-0 small">
+          Customer Code: {{ customer?.code }}<br>
+          <span *ngIf="customer?.email">{{ customer?.email }}<br></span>
+          <span *ngIf="customer?.mobile">+91 {{ customer?.mobile }}</span>
+        </p>
+      </div>
+      
+      <div class="col-sm-6 text-end">
+        <table class="table table-sm table-borderless ms-auto mb-0" style="width: auto;">
+          <tbody>
+            <tr>
+              <td class="text-muted text-end pe-3 pb-1">Invoice Number:</td>
+              <td class="fw-semibold text-start pb-1">{{ invoice?.invoiceNo }}</td>
+            </tr>
+            <tr>
+              <td class="text-muted text-end pe-3 pb-1">Date of Issue:</td>
+              <td class="fw-semibold text-start pb-1">{{ invoice?.invoiceDate | date:'longDate' }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="table-responsive mb-4">
+      <table class="table table-striped table-bordered align-middle">
+        <thead class="table-light">
+          <tr>
+            <th scope="col" class="text-start text-uppercase small text-muted">Item / Description</th>
+            <th scope="col" class="text-center text-uppercase small text-muted" style="width: 120px;">Qty</th>
+            <th scope="col" class="text-end text-uppercase small text-muted" style="width: 150px;">Rate</th>
+            <th scope="col" class="text-end text-uppercase small text-muted" style="width: 150px;">Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let detail of invoice?.details">
+            <td class="text-start fw-semibold py-3">{{ detail?.productName }}</td>
+            <td class="text-center py-3">{{ detail?.qty }}</td>
+            <td class="text-end py-3">₹{{ detail?.rate | number:'1.2-2' }}</td>
+            <td class="text-end fw-bold text-secondary py-3">
+              {{ (detail?.qty ?? 0) * (detail?.rate ?? 0) | currency:'INR' }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+
+    <div class="row justify-content-end mb-5">
+      <div class="col-sm-6 col-md-5">
+        <div class="d-flex justify-content-between align-items-center bg-light rounded px-4 py-3 border">
+          <span class="text-muted fw-bold text-uppercase">Grand Total</span>
+          <span class="fw-bold text-primary fs-3">₹{{ invoice?.invoiceAmount | number:'1.2-2' }}</span>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="mt-5 pt-4 border-top text-center text-muted small">
+      <p class="mb-1 fw-bold">Thank you for your business!</p>
+      <p class="mb-0">For any queries, contact our support team.</p>
+    </div>
+
+  </div>
+</div>

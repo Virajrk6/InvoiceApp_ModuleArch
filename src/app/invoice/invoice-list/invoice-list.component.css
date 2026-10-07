@@ -1,0 +1,47 @@
+.page-container {
+  background-color: #f8f9fa;
+  min-height: calc(100vh - 60px); 
+}
+
+.custom-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0,0,0,0.05);
+}
+
+.form-label.required::after {
+  content: " *";
+  color: #ef4444; 
+}
+
+.sticky-sidebar {
+  position: sticky;
+  top: 1.5rem; 
+  align-self: flex-start;
+}
+
+.p-input-icon-left > i {
+  color: #6c757d;
+  margin-top: -0.5rem;
+}
+
+.text-end {
+  text-align: right !important;
+}
+
+:host ::ng-deep .p-datatable .p-dropdown,
+:host ::ng-deep .p-datatable .p-inputnumber {
+  width: 100%;
+}
+
+:host ::ng-deep .p-datatable .p-dropdown .p-dropdown-label {
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
+}
+
+.bg-light-primary {
+  background-color: #f0f4ff !important; 
+  border-left: 4px solid #3b82f6; 
+}

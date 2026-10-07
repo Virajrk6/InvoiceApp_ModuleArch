@@ -1,0 +1,50 @@
+.page-container {
+  background-color: #f8f9fa;
+  min-height: calc(100vh - 60px);
+}
+
+.list-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0,0,0,0.05);
+}
+
+.custom-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0,0,0,0.05);
+}
+
+
+.form-label.required::after {
+  content: " *";
+  color: #ef4444; 
+}
+
+.p-input-icon-left > i {
+  color: #6c757d;
+  margin-top: -0.2rem;
+}
+
+.p-error {
+  font-size: 0.85rem;
+}
+
+::ng-deep .p-datatable .p-datatable-thead > tr > th {
+  background-color: #f8f9fa;
+  color: #495057;
+  font-weight: 600;
+  border-bottom: 2px solid #dee2e6;
+}
+
+::ng-deep .p-datatable .p-datatable-tbody > tr {
+  transition: background-color 0.2s;
+}
+
+::ng-deep .p-datatable .p-datatable-tbody > tr:hover {
+  background-color: #f1f3f5 !important;
+}

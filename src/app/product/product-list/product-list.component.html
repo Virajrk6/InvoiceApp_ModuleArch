@@ -1,0 +1,69 @@
+<div class="page-container">
+  <app-navigation></app-navigation>
+  <p-toast></p-toast>
+  <p-confirmDialog></p-confirmDialog>
+
+  <div>
+  <p-dialog
+    [header]="selectedProductId === null ? 'Add Product' : 'Edit Product'"
+    [(visible)]="isVisible"
+    [modal]="true"
+    [style]="{ width: '45rem' }">
+    <app-product-form *ngIf="isVisible" [productId]="selectedProductId"></app-product-form>
+    <ng-template pTemplate="footer">
+      <p-button
+        label="Cancel"
+        [text]="true"
+        class="p-button-outlined p-button-secondary"
+        icon="fa-solid fa-xmark"
+        (onClick)="isVisible = false" />
+      <p-button
+        label="Save"
+        [outlined]="true"
+        class="p-button-primary"
+        icon="fa-solid fa-floppy-disk"
+        (onClick)="saveProduct()" />
+    </ng-template>
+  </p-dialog>
+  </div>
+
+  <div class="p-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h2 class="page-title mb-0">Products</h2>
+      <button pButton label="New Product" icon="fa-solid fa-plus" (click)="add()"></button>
+    </div>
+
+    <div class="list-card">
+      <p-table [value]="products" [paginator]="true" [rows]="10" responsiveLayout="scroll">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Id</th>
+            <th>Code</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th style="width:120px"> <div class="d-flex justify-content-center">Actions</div></th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-product>
+          <tr>
+            <td>{{ product.id }}</td>
+            <td>{{ product.code }}</td>
+            <td>{{ product.name }}</td>
+            <td>{{ product.description }}</td>
+            <td>
+              <div class="table-actions d-flex">
+                <button pButton class="p-button-sm p-button-text" icon="fa-solid fa-pen-to-square"
+                        (click)="edit(product.id)" title="Edit"></button>
+                <button pButton class="p-button-sm p-button-text p-button-danger" icon="fa-solid fa-trash"
+                        (click)="delete(product)" title="Delete"></button>
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr><td colspan="5" class="text-center">No products found.</td></tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>

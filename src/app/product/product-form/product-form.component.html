@@ -1,0 +1,37 @@
+<div class="form-card">
+  <form [formGroup]="form" (ngSubmit)="$event.preventDefault()">
+    <div class="row g-4">
+    
+      <div class="col-12 col-md-6">
+        <label class="form-label required fw-semibold mb-2">Code</label>
+        <span class="p-input-icon-left w-100">
+          <i class="fa-solid fa-barcode"></i>
+          <input pInputText class="w-100" formControlName="code" 
+                 [class.ng-invalid]="invalid('code')" [class.ng-dirty]="invalid('code')"
+                 placeholder="e.g. PRD-001">
+        </span>
+        <small class="p-error block mt-1" *ngIf="invalid('code')">Code is required.</small>
+      </div>
+
+      <div class="col-12 col-md-6">
+        <label class="form-label required fw-semibold mb-2">Name</label>
+        <span class="p-input-icon-left w-100">
+          <i class="fa-solid fa-tag"></i>
+          <input pInputText class="w-100" formControlName="name" 
+                 [class.ng-invalid]="invalid('name')" [class.ng-dirty]="invalid('name')"
+                 placeholder="Enter product name">
+        </span>
+        <small class="p-error block mt-1" *ngIf="invalid('name')">Name is required.</small>
+      </div>
+
+      <div class="col-12">
+        <label class="form-label required fw-semibold mb-2">Description</label>
+        <textarea pInputTextarea rows="4" class="w-100" formControlName="description"
+                  [class.ng-invalid]="invalid('description')" [class.ng-dirty]="invalid('description')"
+                  placeholder="Provide a detailed description..."></textarea>
+        <small class="p-error block mt-1" *ngIf="invalid('description')">Description is required.</small>
+      </div>
+      
+    </div>
+  </form>
+</div>

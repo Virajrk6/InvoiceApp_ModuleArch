@@ -1,0 +1,21 @@
+<div class="container-fluid p-0 m-0">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-3 px-2 ">
+    <div class="container-fluid d-flex ">
+      <div class="navbar-nav d-flex flex-row gap-3 justify-start col-4">
+        <a class="nav-link" routerLink="/customer" routerLinkActive="active">Customers</a>
+        <a class="nav-link" routerLink="/product" routerLinkActive="active">Products</a>
+        <a class="nav-link" routerLink="/invoice" routerLinkActive="active">Invoices</a>
+      </div>
+
+      <div class="d-flex justify-content-center col-4">
+        <a class="navbar-brand fs-5" routerLink="/customer">Invoice Manager</a>
+      </div>
+
+      <div class="col-4 d-flex justify-end">
+        <button class="btn btn-outline-light btn-sm ms-auto fs-6" (click)="auth.logout()">
+          <i class="fa-solid fa-right-from-bracket"></i> Logout
+        </button>
+      </div>
+    </div>
+  </nav>
+</div>

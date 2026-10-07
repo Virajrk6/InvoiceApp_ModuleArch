@@ -1,0 +1,34 @@
+.invoice-document {
+    min-height: 1056px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important;
+}
+
+.track-tight {
+    letter-spacing: -1px;
+}
+
+@media print {
+    .invoice-preview-container {
+        background-color: white !important;
+        padding: 0 !important;
+    }
+
+    .invoice-document {
+        box-shadow: none !important;
+        border: none !important;
+        max-width: 100% !important;
+        min-height: auto;
+    }
+
+    .bg-light {
+        background-color: #f8f9fa !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    .table-light th {
+        background-color: #f8f9fa !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+}

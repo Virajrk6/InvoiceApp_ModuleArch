@@ -1,0 +1,63 @@
+<div class="col-12 p-3">
+            <div class="custom-card">
+                
+
+                <form [formGroup]="form" (ngSubmit)="save()">
+                    <div class="row g-3">
+
+                        <div class="col-12">
+                            <label class="form-label required fw-semibold">Code</label>
+                            <span class="p-input-icon-left w-100 ">
+                                <i class="fa-solid fa-hashtag"></i>
+                                <input pInputText class="w-100" formControlName="code"
+                                    [class.ng-invalid]="invalid('code')" [class.ng-dirty]="invalid('code')"
+                                    placeholder="Enter customer code">
+                            </span>
+                            <small class="p-error block mt-1" *ngIf="invalid('code')">Code is required.</small>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label required fw-semibold">First Name</label>
+                            <input pInputText class="w-100" formControlName="firstName"
+                                [class.ng-invalid]="invalid('firstName')" [class.ng-dirty]="invalid('firstName')"
+                                placeholder="First name">
+                            <small class="p-error block mt-1" *ngIf="invalid('firstName')">First name is
+                                required.</small>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label required fw-semibold">Last Name</label>
+                            <input pInputText class="w-100" formControlName="lastName"
+                                [class.ng-invalid]="invalid('lastName')" [class.ng-dirty]="invalid('lastName')"
+                                placeholder="Last name">
+                            <small class="p-error block mt-1" *ngIf="invalid('lastName')">Last name is required.</small>
+                        </div>
+
+                        <div class="col-12">
+                            <label class="form-label required fw-semibold">Email</label>
+                            <span class="p-input-icon-left w-100">
+                                <i class="fa-solid fa-envelope"></i>
+                                <input pInputText type="email" class="w-100" formControlName="email"
+                                    [class.ng-invalid]="invalid('email')" [class.ng-dirty]="invalid('email')"
+                                    placeholder="email@example.com">
+                            </span>
+                            <small class="p-error block mt-1" *ngIf="invalid('email')">Enter a valid email
+                                address.</small>
+                        </div>
+
+                        <div class="col-12">
+                            <label class="form-label required fw-semibold">Mobile</label>
+                            <span class="p-input-icon-left w-100">
+                                <i class="fa-solid fa-phone"></i>
+                                <input pInputText class="w-100" formControlName="mobile" type="number" [maxlength]="10"
+                                    [class.ng-invalid]="invalid('mobile')" [class.ng-dirty]="invalid('mobile')"
+                                    placeholder="10-digit mobile number">
+                            </span>
+                            <small class="p-error block mt-1" *ngIf="invalid('mobile')">Mobile must contain exactly 10
+                                digits.</small>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>

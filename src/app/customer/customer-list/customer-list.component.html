@@ -1,0 +1,76 @@
+<div class="page-container">
+<app-navigation></app-navigation>
+<p-toast></p-toast>
+<p-confirmDialog></p-confirmDialog>
+
+<div >
+<p-dialog 
+    [header]="selectedCustomerId === null ? 'Add Customer' : 'Edit Customer'" 
+    [(visible)]="isVisible" 
+    [modal]="true" 
+    [style]="{ width: '45rem' }">
+        <app-customer-form *ngIf="isVisible" [customerId]="selectedCustomerId" />
+        <ng-template pTemplate="footer">
+            <p-button 
+                label="Cancel" 
+                [text]="true" 
+                class="p-button-outlined p-button-secondary"
+                icon="fa-solid fa-xmark"
+                (onClick)="isVisible = false" />
+            <p-button 
+                label="Save" 
+                [outlined]="true" 
+                class="p-button-primary"
+                icon="fa-solid fa-floppy-disk"
+                (onClick)="saveCustomer()" 
+              />
+        </ng-template>
+</p-dialog>
+</div>
+
+<div class="p-4">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="page-title mb-0">Customers</h2>
+    <button pButton label="New Customer" icon="fa-solid fa-plus" (click)="toggleContent()"></button>
+  </div>
+
+  <div class="list-card">
+    <p-table [value]="customers" [paginator]="true" [rows]="10" responsiveLayout="scroll">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Id</th>
+          <th>Code</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+          <th>Mobile</th>
+          <th style="width:120px"> <div class="d-flex justify-content-center">Actions </div></th>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="body" let-customer>
+        <tr>
+          <td>{{ customer.id }}</td>
+          <td>{{ customer.code }}</td>
+          <td>{{ customer.firstName }}</td>
+          <td>{{ customer.lastName }}</td>
+          <td>{{ customer.email }}</td>
+          <td>{{ customer.mobile }}</td>
+          <td>
+            <div class="table-actions d-flex ">
+              <button pButton class="p-button-sm p-button-text" icon="fa-solid fa-pen-to-square"
+                      (click)="edit(customer.id)" title="Edit"></button>
+              <button pButton class="p-button-sm p-button-text p-button-danger" icon="fa-solid fa-trash"
+                      (click)="delete(customer)" title="Delete"></button>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="emptymessage">
+        <tr><td colspan="7" class="text-center">No customers found.</td></tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>
+</div>

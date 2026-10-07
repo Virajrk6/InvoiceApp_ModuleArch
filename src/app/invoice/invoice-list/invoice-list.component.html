@@ -1,0 +1,87 @@
+<div class="page-container container-fluid  p-0 m-0">
+<app-navigation></app-navigation>
+<p-toast></p-toast>
+<p-confirmDialog></p-confirmDialog>
+
+    <div class="p-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="page-title mb-0">Invoices</h2>
+        <button pButton label="New Invoice" icon="fa-solid fa-plus" (click)="add()"></button>
+    </div>
+
+    <p-dialog [header]="selectedInvoiceNo === null ? 'Create Invoice' : 'Edit Invoice'" [(visible)]="isVisible"
+        [modal]="true" [style]="{ width: 'min(95vw, 90rem)' }">
+        <app-invoice-from *ngIf="isVisible" [invoiceNo]="selectedInvoiceNo">
+        </app-invoice-from>
+        <ng-template pTemplate="footer">
+            <p-button label="Cancel" [text]="true" class="p-button-outlined p-button-secondary" icon="fa-solid fa-xmark"
+                (onClick)="isVisible = false">
+            </p-button>
+            <p-button label="Save Invoice" icon="fa-solid fa-floppy-disk" (onClick)="saveInvoice()">
+            </p-button>
+        </ng-template>
+    </p-dialog>
+
+    <div class="row g-4 align-items-start mt-3">
+        <div class="col-12">
+            <div class="list-card custom-card">
+
+                <p-table [value]="invoices" [paginator]="true" [rows]="10" responsiveLayout="scroll"
+                    styleClass="p-datatable-sm p-datatable-striped">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th>Invoice</th>
+                            <th>Date</th>
+                            <th>Customer</th>
+                            <th >Amount</th>
+                            <th style="width:120px">
+                                <div class="d-flex justify-content-center">Actions </div></th>
+                        </tr>
+                    </ng-template>
+
+                    <ng-template pTemplate="body" let-invoice>
+                        <tr>
+                            <td>
+                                <div class="fw-bold text-primary">#{{ invoice.invoiceNo }}</div>
+                            </td>
+                            <td>
+                                <small class="text-muted"><i class="fa-regular fa-calendar me-1"></i>{{
+                                    invoice.invoiceDate | date:'dd/MM/yy' }}</small>
+                            </td>
+                            <td class="text-truncate" style="max-width: 100px;"
+                                [title]="customerName(invoice.customerId)">
+                                {{ customerName(invoice.customerId) }}
+                            </td>
+                            <td class="d-flex fw-semibold text-success">
+                                {{ invoice.invoiceAmount | currency:'INR' }}
+                            </td>
+                            <td>
+                                <div class="d-flex justify-content-end">
+                                    <button pButton class="p-button-rounded p-button-text p-button-sm me-1"
+                                        icon="fa-solid fa-eye" (click)="view(invoice.invoiceNo)"
+                                        title="View invoice details" aria-label="View invoice details"></button>
+                                    <button pButton class="p-button-rounded p-button-text p-button-sm me-1" title="Edit"
+                                        icon="fa-solid fa-pen-to-square" (click)="edit(invoice.invoiceNo)"></button>
+                                    <button pButton class="p-button-rounded p-button-text p-button-danger p-button-sm"
+                                        title="Delete" icon="fa-solid fa-trash" (click)="delete(invoice)"></button>
+                                </div>
+                            </td>
+                        </tr>
+                    </ng-template>
+
+                    <ng-template pTemplate="emptymessage">
+                        <tr>
+                            <td colspan="4">
+                                <div class="text-center py-4 text-muted">
+                                    <i class="fa-solid fa-receipt text-light fs-2 mb-2"></i>
+                                    <p class="mb-0 small">No invoices found.</p>
+                                </div>
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
